@@ -1,18 +1,17 @@
 # Nutanix Calm & Splunk
 # 
-This Nutanix Calm blueprint will deploy a Splunk monolithic instance in a VM.  The intention of this BP is to show the how
-Monolithic Splunk can be deployed in no time using Calm.
+This Nutanix Calm blueprint will deploy a Splunk instance in a VM.  One Search head, one master node, and two indexers.  6 vDisk have been added to complete BP.
 
 ## Mandatory Requirements Section
 ## 
 This section should be included in all Nutanix Calm blueprints committed to this repository.  For demo or sample blueprints that
 are not designed to be used in production or "real" environments, high-level information only is required.
 
-- Created on Prism Central 5.8.2.
+- Created on Prism Central 6.11.
 
-- Minimum hardware requirements: edit the blueprint to specify the minimum vCPU, memory and disk requirements before publishing.  They are marked as runtime too to enable end users to override if needed 
+- Minimum hardware requirements: edit the blueprint to specify the minimum vCPU, memory, vdisk, and disk requirements before publishing.  They are marked as runtime too to enable end users to override if needed 
 
-- Base disk image required: CentOS Linux 7 with Cloud-Init package preinstalled - Download the CentOS 7 Image from
+- Base disk image required: CentOS Linux with Cloud-Init package preinstalled - Download the CentOS 7 Image from
 [here](http://download.nutanix.com/calm/CentOS-7-x86_64-GenericCloud-1801-01.qcow2)
 
  - Variables: 
@@ -24,7 +23,7 @@ are not designed to be used in production or "real" environments, high-level inf
 - Credentials: Your SSH private key - Tested on AHV only but should
 work the same way on any platform that supports CentOS Linux 7 VMs 
 
-- Minimum No of VMs required: 1 
+- Minimum No of VMs required: 4 
  
 - Actions: None
 
@@ -34,6 +33,7 @@ work the same way on any platform that supports CentOS Linux 7 VMs
 connection for package downloads 
 
 - Disks information: 1x SCSI disk per VM.
+- Indexer Disks information: 6x SCSI disk per VM with LVM and a 64K block size.
 
 ## Important Note
 ## 
@@ -63,7 +63,7 @@ scripts takes care of implementing these best practices at the OS level:
 - Set the file descriptors to 65535
 - Set the hostname to the SERVER_NAME specified as input (runtime variable)
 
-The BP then downloads the Splunk 7.1.2 community edition posted on the Splunk website that comes with a 60-day evaluation license.
+The BP then downloads the Splunk 7.3 edition posted on the Splunk website that comes with a 60-day evaluation license.
 It installs Splunk in /opt folder from this binary and sets up the initial admin password as the ADMIN_PASSWORD entered by the 
 user (runtime variable).  It starts the Splunk server (silent install) with the right folder/user permissions
 
@@ -72,7 +72,7 @@ Splunk version in the blueprint if needed
 
 ## Splunk instance
 ## 
-Once the app launch is successful, you can access splunk instance at http://<IP>:8000.  You can login as admin and the password
+Once the app launch is successful, you can access splunk instance(s) at http://<IP>:8000.  You can login as admin and the password
 you specified under ADMIN_PASSWORD runtime variable
 
 ## Usage
