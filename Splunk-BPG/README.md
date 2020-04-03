@@ -63,7 +63,7 @@ scripts takes care of implementing these best practices at the OS level:
 - Set the file descriptors to 65535
 - Set the hostname to the SERVER_NAME specified as input (runtime variable)
 
-The BP then downloads the Splunk 7.3 edition posted on the Splunk website that comes with a 60-day evaluation license.
+The BP then downloads the Splunk 8.0.3 edition posted on the Splunk website that comes with a 60-day evaluation license.
 It installs Splunk in /opt folder from this binary and sets up the initial admin password as the ADMIN_PASSWORD entered by the 
 user (runtime variable).  It starts the Splunk server (silent install) with the right folder/user permissions
 
@@ -91,6 +91,9 @@ through each blueprint to ensure the configuration suits your requirements.
 
 ## Video 
 ##
-[Click here](https://drive.google.com/file/d/1318WYyZvNOh38h7Z6pJk-eAZAJAUSuL8/view?usp=sharing)
 
 ***Changes will be required before these application blueprints can be used in production environments.***
+
+## Password
+##
+If a password is asked for it is: nutanix/4u
